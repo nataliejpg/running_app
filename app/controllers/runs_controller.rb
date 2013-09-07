@@ -5,7 +5,7 @@ class RunsController < ApplicationController
   # GET /runs
   # GET /runs.json
   def index
-    @runs = Run.all.sort_by{|t| t[:date]}.reverse
+    @runs=Run.where(:user_id => current_user.id).all.sort_by{|t| t[:date]}.reverse
   end
 
   # GET /runs/1
@@ -14,9 +14,9 @@ class RunsController < ApplicationController
   end
 
   def records
-    @pace = Run.all.sort_by{:pace}[0]
-    @distance=Run.all.sort_by{:distance}[0]
-    @time=Run.all.sort_by{:duration}[0]
+    @pace = Run.where(:user_id => current_user.id).all.sort_by{:pace}[0]
+    @distance=Run.where(:user_id => current_user.id).all.sort_by{:distance}[0]
+    @time=Run.where(:user_id => current_user.id).all.sort_by{:duration}[0]
     render 'records'
   end
 
@@ -33,6 +33,7 @@ class RunsController < ApplicationController
   # POST /runs.json
   def create
     @run = Run.new(run_params)
+    @run.user=current_user
 
     respond_to do |format|
       if @run.save
@@ -48,6 +49,7 @@ class RunsController < ApplicationController
   # PATCH/PUT /runs/1
   # PATCH/PUT /runs/1.json
   def update
+    @run.user=current_user
     respond_to do |format|
       if @run.update(run_params)
         format.html { redirect_to @run, notice: 'Run was successfully updated.' }
@@ -72,7 +74,7 @@ class RunsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_run
-      @run = Run.find(params[:id])
+      @run = Run.where(:user_id => current_user.id).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
