@@ -1,0 +1,14 @@
+<% @records_active = "active" %>
+<h1>My Records!</h1>
+
+<h2>Fastest Pace</h2>
+<p><%= @pace.pace %></p>
+<%= link_to 'Show', @pace %>
+
+<h2>Longest Distance</h2>
+<p><%= @distance.distance %></p>
+<%= link_to 'Show', @distance %>
+
+<h2>Longest Time</h2>
+<p><%= @time.duration %></p>
+<%= link_to 'Show', @distance %>

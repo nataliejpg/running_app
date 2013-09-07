@@ -1,0 +1,33 @@
+<% @runs_active = "active" %>
+<h1>Listing runs</h1>
+
+<%= link_to 'New Run', new_run_path %>
+
+<h2>By Date</h2>
+<%= render 'table' %>
+
+<h2>By Pace</h2>
+<% @runs= @runs.sort_by{|p| p[:pace]}.reverse %>
+<%= render 'table' %>
+
+<h2>By Distance</h2>
+<% @runs=@runs.sort_by{|d| d[:distance]}.reverse %>
+<%= render 'table' %>
+
+<br>
+
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#home">Home</a></li>
+  <li><a href="#profile">Profile</a></li>
+  <li><a href="#messages">Messages</a></li>
+  <li><a href="#settings">Settings</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="home">...</div>
+  <div class="tab-pane" id="profile">profile</div>
+  <div class="tab-pane" id="messages">messages</div>
+  <div class="tab-pane" id="settings">settings</div>
+</div>
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-08-22
+  time: 2013-08-22 18:47:42
+  distance: 9.99
+  description: MyText
+  place: MyString
+
+two:
+  date: 2013-08-22
+  time: 2013-08-22 18:47:42
+  distance: 9.99
+  description: MyText
+  place: MyString

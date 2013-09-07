@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Running</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="nav navbar-inverse" role="navigation">
+
+  <div class="navbar-header">
+    <a class="navbar-brand">Run</a>
+  </div>
+
+    <ul class="nav navbar-nav">
+      <li class=<%= @home_active %>><%= link_to "Home", controller: "/welcome"%></li>
+      <li class=<%= @profile_active %>><a href="#">My Profile</a></li>
+      <li class=<%= @runs_active %>><%= link_to "My Runs", controller: "/runs" %></li>
+      <li class=<%= @places_active %>><%= link_to "My Places", controller: "/places" %></li>
+      <li class=<%= @records_active %>><%= link_to "Records", controller: "/runs", action: "records" %></li>
+      <% if user_signed_in? %>
+        <li>Signed in as <%= current_user.email %></li> 
+        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+        </li>
+      <% else %>
+        <li class="pull-right"><%= link_to "Sign In", new_user_session_path %></li>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+    </ul>
+
+
+</nav>
+
+<div class="container">
+
+    <%= yield %>
+
+</div>
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
